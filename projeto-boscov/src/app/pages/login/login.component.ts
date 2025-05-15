@@ -57,11 +57,14 @@ export class LoginComponent {
       this.authService.login(email, senha).subscribe({
         next: (res) => {
           console.log('Token recebido:', res.token);
+          if (typeof window !== 'undefined') {
+            localStorage.setItem('token', res.token);
+          }
+          this.router.navigate(['/home']);
           this.snackBar.open('Login realizado com sucesso!', 'Fechar', {
             duration: 3000,
             panelClass: ['success-snackbar'],
           });
-          localStorage.setItem('token', res.token); // opcional
         },
 
         error: (err) => {

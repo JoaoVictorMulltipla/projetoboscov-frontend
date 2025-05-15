@@ -1,0 +1,43 @@
+<div style="text-align: center; margin: 2rem;">
+  <mat-form-field appearance="outline" style="width: 50%;">
+    <mat-label>Buscar filme por nome, diretor ou gênero</mat-label>
+    <input matInput [(ngModel)]="termoBusca" (input)="filtrarFilmes()" placeholder="Ex: Matrix, Nolan, Ação">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+</div>
+
+<div class="filmes-grid">
+  <mat-card *ngFor="let filme of filmesPaginados" class="filme-card" style="width: 280px;">
+    <img mat-card-image [src]="filme.poster" alt="{{ filme.nome }}" />
+    <br>
+    <mat-card-title style="text-align: center; color: white; font-family: 'Courier New', Courier, monospace;">{{ filme.nome }}</mat-card-title>
+    <mat-card-subtitle style="text-align: center;">{{ filme.diretor }} • {{ filme.anoLancamento }}</mat-card-subtitle>
+    <mat-card-content>
+      <mat-list dense>
+        <mat-list-item>
+          <div mat-line ><mat-icon matListIcon>category</mat-icon><strong> Gênero:</strong> {{ filme.genero?.descricao || 'N/A' }}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <mat-list-item>
+          <div mat-line><mat-icon matListIcon>schedule</mat-icon><strong> Duração:</strong> {{ filme.duracao }} min</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <mat-list-item>
+          <div mat-line><mat-icon matListIcon>stars</mat-icon><strong> Produtora:</strong> {{ filme.produtora }}</div>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<!-- Paginador -->
+<div style="display: flex; justify-content: center; margin-top: 2rem;">
+  <mat-paginator
+    [length]="filmesFiltrados.length"
+    [pageSize]="filmesPorPagina"
+    [pageSizeOptions]="[5, 10, 20]"
+    (page)="onPageChange($event)">
+  </mat-paginator>
+</div>
