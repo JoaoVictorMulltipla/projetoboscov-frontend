@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Avaliar filme</h2>
+<mat-dialog-content>
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Comentário</mat-label>
+    <textarea matInput [(ngModel)]="comentario" rows="3"></textarea>
+  </mat-form-field>
+
+  <p>Nota: {{ nota }}</p>
+  <mat-slider min="0" max="10" step="1" tickInterval="1" [(ngModel)]="nota"></mat-slider>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="salvar()">Salvar</button>
+</mat-dialog-actions>

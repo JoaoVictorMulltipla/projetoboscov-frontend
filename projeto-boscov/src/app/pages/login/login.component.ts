@@ -51,30 +51,34 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    if (this.loginForm.valid) {
-      const { email, senha } = this.loginForm.value;
+  if (this.loginForm.valid) {
+    const { email, senha } = this.loginForm.value;
 
-      this.authService.login(email, senha).subscribe({
-        next: (res) => {
-          console.log('Token recebido:', res.token);
-          if (typeof window !== 'undefined') {
-            localStorage.setItem('token', res.token);
-          }
-          this.router.navigate(['/home']);
-          this.snackBar.open('Login realizado com sucesso!', 'Fechar', {
-            duration: 3000,
-            panelClass: ['success-snackbar'],
-          });
-        },
+    this.authService.login(email, senha).subscribe({
+      next: (res) => {
+        console.log('Token recebido:', res.token);
 
-        error: (err) => {
-          console.error('Erro ao logar:', err);
-          this.snackBar.open('Email ou senha inválidos.', 'Fechar', {
-            duration: 3000,
-            panelClass: ['error-snackbar'],
-          });
-        },
-      });
-    }
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('token', res.token);
+          localStorage.setItem('usuario', JSON.stringify(res.usuario));
+        }
+
+        this.router.navigate(['/home']);
+
+        this.snackBar.open('Login realizado com sucesso!', 'Fechar', {
+          duration: 3000,
+          panelClass: ['success-snackbar'],
+        });
+      },
+
+      error: (err) => {
+        console.error('Erro ao logar:', err);
+        this.snackBar.open('Email ou senha inválidos.', 'Fechar', {
+          duration: 3000,
+          panelClass: ['error-snackbar'],
+        });
+      },
+    });
   }
+}
 }

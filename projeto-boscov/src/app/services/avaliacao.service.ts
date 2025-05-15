@@ -13,7 +13,7 @@ export class AvaliacoesService {
   }
 
   atualizar(idUsuario: number, idFilme: number, dados: { nota: number, comentario: string }): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${idUsuario}/${idFilme}`, dados);
+    return this.http.patch(`${this.apiUrl}/${idUsuario}/${idFilme}`, dados);
   }
 
   deletar(idUsuario: number, idFilme: number): Observable<void> {

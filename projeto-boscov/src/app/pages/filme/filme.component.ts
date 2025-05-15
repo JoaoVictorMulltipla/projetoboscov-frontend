@@ -10,6 +10,7 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatListModule } from '@angular/material/list';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { getPortuguesePaginatorIntl } from '../paginator-pt';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-filmes',
@@ -17,6 +18,7 @@ import { getPortuguesePaginatorIntl } from '../paginator-pt';
   templateUrl: './filme.component.html',
   styleUrls: ['./filme.component.css'],
   imports: [
+    RouterModule,
     CommonModule,
     FormsModule,
     MatCardModule,
