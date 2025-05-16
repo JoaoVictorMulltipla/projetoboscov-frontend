@@ -13,6 +13,8 @@ import {
 import { AvaliacoesService } from '../../services/avaliacao.service';
 import { AuthService } from '../../services/auth.service';
 import { FormAvaliacaoComponent } from '../../components/form-avaliacao/form-avaliacao.component';
+import { MatTableModule } from '@angular/material/table';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @Component({
   standalone: true,
@@ -24,11 +26,14 @@ import { FormAvaliacaoComponent } from '../../components/form-avaliacao/form-ava
     RouterLink,
     MatCardModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTableModule,
+    MatTooltipModule
   ]
 })
 export class FilmeDetalheComponent implements OnInit {
   filme?: FilmeDetalhe;
+  displayedColumns: string[] = ['usuario', 'nota', 'comentario', 'acoes'];
 
   constructor(
     private route: ActivatedRoute,
