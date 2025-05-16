@@ -28,7 +28,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatIconModule,
     MatButtonModule,
     MatTableModule,
-    MatTooltipModule
+    MatTooltipModule,
   ]
 })
 export class FilmeDetalheComponent implements OnInit {

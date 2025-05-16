@@ -1,0 +1,19 @@
+<mat-toolbar color="primary" class="navbar" style="position: fixed; top: 0; width: 100%; z-index: 1000;">
+  <span style="flex: 1 1 auto; cursor: pointer;" [routerLink]="['/filmes']" routerLinkActive="router-link-active" >🎬 Projeto Boscov</span>
+
+  <button mat-button [matMenuTriggerFor]="menu">
+    Olá, <strong>{{ apelido }}</strong>
+    <mat-icon>expand_more</mat-icon>
+  </button>
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="editarPerfil()">
+      <mat-icon>edit</mat-icon>
+      <span>Editar Perfil</span>
+    </button>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Sair</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>

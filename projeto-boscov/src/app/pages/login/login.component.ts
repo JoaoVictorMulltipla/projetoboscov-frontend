@@ -11,6 +11,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { RegistroComponent } from '../../components/registro/registro.component';
 
 @Component({
   selector: 'app-login',
@@ -42,7 +44,8 @@ export class LoginComponent {
     private fb: FormBuilder,
     private authService: AuthService,
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -50,35 +53,45 @@ export class LoginComponent {
     });
   }
 
-  onSubmit() {
-  if (this.loginForm.valid) {
-    const { email, senha } = this.loginForm.value;
+  abrirRegistro() {
+    const dialogRef = this.dialog.open(RegistroComponent);
 
-    this.authService.login(email, senha).subscribe({
-      next: (res) => {
-        console.log('Token recebido:', res.token);
-
-        if (typeof window !== 'undefined') {
-          localStorage.setItem('token', res.token);
-          localStorage.setItem('usuario', JSON.stringify(res.usuario));
-        }
-
-        this.router.navigate(['/home']);
-
-        this.snackBar.open('Login realizado com sucesso!', 'Fechar', {
-          duration: 3000,
-          panelClass: ['success-snackbar'],
-        });
-      },
-
-      error: (err) => {
-        console.error('Erro ao logar:', err);
-        this.snackBar.open('Email ou senha inválidos.', 'Fechar', {
-          duration: 3000,
-          panelClass: ['error-snackbar'],
-        });
-      },
+    dialogRef.afterClosed().subscribe((registrado) => {
+      if (registrado) {
+        this.router.navigate(['/filmes']);
+      }
     });
   }
-}
+
+  onSubmit() {
+    if (this.loginForm.valid) {
+      const { email, senha } = this.loginForm.value;
+
+      this.authService.login(email, senha).subscribe({
+        next: (res) => {
+          console.log('Token recebido:', res.token);
+
+          if (typeof window !== 'undefined') {
+            localStorage.setItem('token', res.token);
+            localStorage.setItem('usuario', JSON.stringify(res.usuario));
+          }
+
+          this.router.navigate(['/filmes']);
+
+          this.snackBar.open('Login realizado com sucesso!', 'Fechar', {
+            duration: 3000,
+            panelClass: ['success-snackbar'],
+          });
+        },
+
+        error: (err) => {
+          console.error('Erro ao logar:', err);
+          this.snackBar.open('Email ou senha inválidos.', 'Fechar', {
+            duration: 3000,
+            panelClass: ['error-snackbar'],
+          });
+        },
+      });
+    }
+  }
 }

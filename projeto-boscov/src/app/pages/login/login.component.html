@@ -1,7 +1,7 @@
 <div class="login-container">
   <mat-card class="login-card">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <h2 style="text-align: center; color: white;">Acesse a sua conta!</h2>
+      <h2 style="text-align: center; color: white">Acesse a sua conta!</h2>
 
       <!-- Campo de E-mail -->
       <mat-form-field appearance="fill" class="full-width">
@@ -20,7 +20,7 @@
         <mat-label>Senha</mat-label>
         <input
           matInput
-          [type]="showPassword ? 'text' : 'senha'"
+          [type]="showPassword ? 'text' : 'password'"
           formControlName="senha"
           required
         />
@@ -30,7 +30,9 @@
           type="button"
           (click)="togglePasswordVisibility()"
         >
-          <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          <mat-icon>{{
+            showPassword ? "visibility_off" : "visibility"
+          }}</mat-icon>
         </button>
         <mat-error *ngIf="loginForm.get('senha')?.hasError('required')">
           A senha é obrigatória.
@@ -46,6 +48,18 @@
         [disabled]="loginForm.invalid"
       >
         Entrar
+      </button>
+
+      <!-- Botão de Registrar -->
+      <button
+        mat-stroked-button
+        color="primary"
+        style="color: white;"
+        class="full-width"
+        type="button"
+        (click)="abrirRegistro()"
+      >
+        Registrar
       </button>
 
       <!-- Mensagem de erro geral -->

@@ -1,0 +1,75 @@
+<button
+    mat-stroked-button
+    style="color: white"
+    routerLink="/filmes"
+    class="back-button"
+  >
+    <mat-icon>arrow_back</mat-icon>
+    Voltar
+</button>
+
+<mat-card style="max-width: 500px; margin: 0 auto; padding: 40px 40px 40px 40px;">
+  <h2 style="justify-content: center; align-items: center; display: flex; color: white;">Editar Perfil</h2>
+
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Nome</mat-label>
+    <input matInput [(ngModel)]="nome" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Apelido</mat-label>
+    <input matInput [(ngModel)]="apelido" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Senha</mat-label>
+    <input
+      matInput
+      [type]="hide ? 'password' : 'text'"
+      [(ngModel)]="senha"
+      autocomplete="new-password"
+    />
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="hide = !hide"
+      [attr.aria-label]="'Alternar visibilidade da senha'"
+      [attr.aria-pressed]="!hide"
+      type="button"
+    >
+      <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Confirmar senha</mat-label>
+    <input
+      matInput
+      [type]="hideConfirm ? 'password' : 'text'"
+      [(ngModel)]="confirmarSenha"
+      autocomplete="new-password"
+    />
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="hideConfirm = !hideConfirm"
+      type="button"
+      [attr.aria-label]="'Alternar visibilidade da confirmação de senha'"
+      [attr.aria-pressed]="!hideConfirm"
+    >
+      <mat-icon>{{ hideConfirm ? 'visibility_off' : 'visibility' }}</mat-icon>
+    </button>
+    <mat-error *ngIf="senha && confirmarSenha && !senhasIguais()">
+      As senhas não coincidem.
+    </mat-error>
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    (click)="salvar()"
+    [disabled]="senha && confirmarSenha ? !senhasIguais() : false"
+    style="color: white;"
+  >
+    Salvar
+  </button>
+</mat-card>
