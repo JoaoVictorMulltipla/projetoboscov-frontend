@@ -1,0 +1,26 @@
+.full-width {
+  width: 100%;
+}
+
+.nota-container {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.estrelas {
+  display: flex;
+  gap: 4px;
+}
+
+.nota-label {
+  font-weight: 500;
+}
+
+.nota-valor {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ffc107;
+}

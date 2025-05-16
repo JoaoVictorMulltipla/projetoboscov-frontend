@@ -1,13 +1,30 @@
-<h2 mat-dialog-title>Avaliar filme</h2>
-<mat-dialog-content>
-  <mat-form-field appearance="outline" style="width: 100%;">
+<h2 mat-dialog-title class="titulo">O que achou desse filme?</h2>
+
+<mat-dialog-content class="avaliacao-content">
+  <mat-form-field appearance="outline" class="full-width">
     <mat-label>Comentário</mat-label>
     <textarea matInput [(ngModel)]="comentario" rows="3"></textarea>
   </mat-form-field>
 
-  <p>Nota: {{ nota }}</p>
-  <mat-slider min="0" max="10" step="1" tickInterval="1" [(ngModel)]="nota"></mat-slider>
+  <div class="nota-container">
+    <span class="nota-label">Nota:</span>
+    <div class="estrelas">
+      <button
+        mat-icon-button
+        *ngFor="let estrela of estrelas"
+        (click)="setNota(estrela)"
+        [color]="nota >= estrela ? 'accent' : ''"
+        [disableRipple]="true"
+      >
+        <mat-icon style="color: #ffc107;">
+          {{ nota >= estrela ? 'star' : 'star_border' }}
+        </mat-icon>
+      </button>
+    </div>
+    <span class="nota-valor">{{ nota }}</span>
+  </div>
 </mat-dialog-content>
+
 <mat-dialog-actions align="end">
   <button mat-button (click)="cancelar()">Cancelar</button>
   <button mat-raised-button color="primary" (click)="salvar()">Salvar</button>

@@ -4,19 +4,29 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, FormsModule, MatFormFieldModule, MatInputModule, MatSliderModule, MatButtonModule, MatDialogModule],
   selector: 'app-form-avaliacao',
-  templateUrl: './form-avaliacao.component.html'
+  templateUrl: './form-avaliacao.component.html',
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatIconModule
+  ],
+  styleUrls: ['./form-avaliacao.component.css']
 })
 export class FormAvaliacaoComponent {
   nota: number;
   comentario: string;
+  estrelas: number[] = [1, 2, 3, 4, 5];
 
   constructor(
     public dialogRef: MatDialogRef<FormAvaliacaoComponent>,
@@ -24,6 +34,10 @@ export class FormAvaliacaoComponent {
   ) {
     this.nota = data.nota;
     this.comentario = data.comentario;
+  }
+
+  setNota(valor: number) {
+    this.nota = valor;
   }
 
   salvar() {
