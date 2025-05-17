@@ -1,6 +1,6 @@
 mat-card {
   margin: 40px auto 0 auto;
-  padding: 40px 40px 40px 40px; /* mais espaço interno */
+  padding: 40px 40px 40px 40px;
   max-width: 500px;
   display: flex;
   flex-direction: column;
@@ -34,12 +34,12 @@ button[mat-icon-button] {
 }
 
 .snackbar-success {
-  background-color: #4caf50; /* verde */
+  background-color: #4caf50;
   color: white;
 }
 
 .snackbar-error {
-  background-color: #f44336; /* vermelho */
+  background-color: #f44336;
   color: white;
 }
 

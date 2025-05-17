@@ -13,6 +13,7 @@ import { MatDialogModule } from '@angular/material/dialog';
   standalone: true,
   selector: 'app-registro',
   templateUrl: './registro.component.html',
+  styleUrl: '../registro/registro.component.css',
   imports: [
     CommonModule,
     FormsModule,

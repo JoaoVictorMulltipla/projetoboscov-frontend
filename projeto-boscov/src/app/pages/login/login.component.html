@@ -3,7 +3,7 @@
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <h2 style="text-align: center; color: white">Acesse a sua conta!</h2>
 
-      <!-- Campo de E-mail -->
+
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Email</mat-label>
         <input matInput type="email" formControlName="email" required />
@@ -15,7 +15,7 @@
         </mat-error>
       </mat-form-field>
 
-      <!-- Campo de Senha com Ícone -->
+
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Senha</mat-label>
         <input
@@ -39,7 +39,7 @@
         </mat-error>
       </mat-form-field>
 
-      <!-- Botão de Login -->
+
       <button
         mat-raised-button
         color="primary"
@@ -50,7 +50,7 @@
         Entrar
       </button>
 
-      <!-- Botão de Registrar -->
+
       <button
         mat-stroked-button
         color="primary"
@@ -62,7 +62,7 @@
         Registrar
       </button>
 
-      <!-- Mensagem de erro geral -->
+
       <div *ngIf="error" class="error-message">
         {{ error }}
       </div>

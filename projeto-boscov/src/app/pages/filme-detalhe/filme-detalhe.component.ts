@@ -53,25 +53,25 @@ export class FilmeDetalheComponent implements OnInit {
     this.carregarFilme(id);
   }
 
-  /** Recarrega filme + avaliações */
+
   private carregarFilme(id: number) {
     this.filmeService.buscarFilmePorId(id).subscribe(f => (this.filme = f));
   }
 
-  /** Média arredondada a uma casa decimal */
+
   get media(): number {
     if (!this.filme?.avaliacoes?.length) return 0;
     const soma = this.filme.avaliacoes.reduce((t, a) => t + a.nota, 0);
     return +(soma / this.filme.avaliacoes.length).toFixed(1);
   }
 
-  /** Retorna avaliação do usuário logado (se existir) */
+
   minhaAvaliacao(): Avaliacao | undefined {
     const user = this.auth.getUser();          // adapte para seu método real
     return this.filme?.avaliacoes.find(a => a.usuario.id === user?.id);
   }
 
-  /** Abrir diálogo para criar/editar avaliação */
+
   avaliar(): void {
     const user = this.auth.getUser();
     if (!user || !this.filme) return;
@@ -103,7 +103,7 @@ export class FilmeDetalheComponent implements OnInit {
     });
   }
 
-  /** Excluir uma avaliação (própria ou admin) */
+
   excluir(idUsuario: number) {
     if (!this.filme) return;
     this.avaliacoesService
@@ -111,7 +111,7 @@ export class FilmeDetalheComponent implements OnInit {
       .subscribe(() => this.carregarFilme(this.filme!.id));
   }
 
-  /** O usuário logado pode excluir esta avaliação? */
+
   podeExcluir(a: Avaliacao): boolean {
     const user = this.auth.getUser();
     return (

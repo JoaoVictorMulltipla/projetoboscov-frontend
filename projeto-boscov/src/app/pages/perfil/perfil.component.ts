@@ -58,7 +58,7 @@ export class PerfilComponent {
         duration: 3000,
         horizontalPosition: 'right',
         verticalPosition: 'top',
-        panelClass: ['snackbar-error'], // você pode criar um estilo para erros
+        panelClass: ['snackbar-error'],
       });
       return;
     }

@@ -25,7 +25,7 @@ export class AuthService {
     private storage: StorageService
   ) {}
 
-  /* ---------- Login ---------- */
+
   login(email: string, senha: string): Observable<LoginResponse> {
     return this.http
       .post<LoginResponse>(`${this.apiUrl}/login`, { email, senha })
@@ -37,13 +37,13 @@ export class AuthService {
       );
   }
 
-  /* ---------- Logout ---------- */
+
   logout(): void {
     this.storage.remove('token');
     this.storage.remove('usuario');
   }
 
-  /* ---------- Helper ---------- */
+
   isAuthenticated(): boolean {
     return !!this.storage.get('token');
   }
@@ -52,7 +52,7 @@ export class AuthService {
     return this.storage.get('usuario');
   }
 
-  /* ---------- Atualizar perfil ---------- */
+
   atualizarUsuario(id: number, dados: any) {
     return this.http.patch(`${this.apiUrl}/usuarios/${id}`, dados).pipe(
       tap(() => {
