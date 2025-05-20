@@ -8,13 +8,13 @@ import { MatDialog } from '@angular/material/dialog';
 import {
   FilmeService,
   FilmeDetalhe,
-  Avaliacao
+  Avaliacao,
 } from '../../services/filme.service';
 import { AvaliacoesService } from '../../services/avaliacao.service';
 import { AuthService } from '../../services/auth.service';
 import { FormAvaliacaoComponent } from '../../components/form-avaliacao/form-avaliacao.component';
 import { MatTableModule } from '@angular/material/table';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   standalone: true,
@@ -29,7 +29,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatButtonModule,
     MatTableModule,
     MatTooltipModule,
-  ]
+  ],
 })
 export class FilmeDetalheComponent implements OnInit {
   filme?: FilmeDetalhe;
@@ -53,11 +53,9 @@ export class FilmeDetalheComponent implements OnInit {
     this.carregarFilme(id);
   }
 
-
   private carregarFilme(id: number) {
-    this.filmeService.buscarFilmePorId(id).subscribe(f => (this.filme = f));
+    this.filmeService.buscarFilmePorId(id).subscribe((f) => (this.filme = f));
   }
-
 
   get media(): number {
     if (!this.filme?.avaliacoes?.length) return 0;
@@ -65,12 +63,10 @@ export class FilmeDetalheComponent implements OnInit {
     return +(soma / this.filme.avaliacoes.length).toFixed(1);
   }
 
-
   minhaAvaliacao(): Avaliacao | undefined {
-    const user = this.auth.getUser();          // adapte para seu método real
-    return this.filme?.avaliacoes.find(a => a.usuario.id === user?.id);
+    const user = this.auth.getUser(); // adapte para seu método real
+    return this.filme?.avaliacoes.find((a) => a.usuario.id === user?.id);
   }
-
 
   avaliar(): void {
     const user = this.auth.getUser();
@@ -82,27 +78,22 @@ export class FilmeDetalheComponent implements OnInit {
       width: '400px',
       data: {
         nota: existente?.nota ?? 5,
-        comentario: existente?.comentario ?? ''
-      }
+        comentario: existente?.comentario ?? '',
+      },
     });
 
-    ref.afterClosed().subscribe(res => {
+    ref.afterClosed().subscribe((res) => {
       if (!res) return;
       const acao$ = existente
-        ? this.avaliacoesService.atualizar(
-            user.id,
-            this.filme!.id,
-            res
-          )
+        ? this.avaliacoesService.atualizar(user.id, this.filme!.id, res)
         : this.avaliacoesService.criar({
             idUsuario: user.id,
             idFilme: this.filme!.id,
-            ...res
+            ...res,
           });
       acao$.subscribe(() => this.carregarFilme(this.filme!.id));
     });
   }
-
 
   excluir(idUsuario: number) {
     if (!this.filme) return;
@@ -111,11 +102,8 @@ export class FilmeDetalheComponent implements OnInit {
       .subscribe(() => this.carregarFilme(this.filme!.id));
   }
 
-
   podeExcluir(a: Avaliacao): boolean {
     const user = this.auth.getUser();
-    return (
-      user?.id === a.usuario.id || user?.tipoUsuario === 'ADMIN'
-    );
+    return user?.id === a.usuario.id || user?.tipoUsuario === 'ADMIN';
   }
 }

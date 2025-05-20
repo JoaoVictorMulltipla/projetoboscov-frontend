@@ -1,0 +1,75 @@
+<button
+  mat-stroked-button
+  style="color: white"
+  routerLink="/filmes"
+  class="back-button"
+>
+  <mat-icon>arrow_back</mat-icon>
+  Voltar
+</button>
+
+<div class="usuarios-container mat-elevation-z4">
+  <div class="header">
+    <h2>Lista de Usuários</h2>
+    <button
+      mat-raised-button
+      color="primary"
+      class="btn-novo-usuario"
+      (click)="abrirCadastro()"
+    >
+      <mat-icon>person_add</mat-icon>
+      <span>Novo Usuário</span>
+    </button>
+  </div>
+
+  <mat-table [dataSource]="usuarios" class="mat-elevation-z1 tabela-usuarios">
+    <ng-container matColumnDef="nome">
+      <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+      <mat-cell *matCellDef="let usuario"> {{ usuario.nome }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+      <mat-cell *matCellDef="let usuario"> {{ usuario.email }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="tipoUsuario">
+      <mat-header-cell *matHeaderCellDef> Tipo </mat-header-cell>
+      <mat-cell *matCellDef="let usuario">
+        <span
+          class="badge"
+          [ngClass]="usuario.tipoUsuario === 'ADMIN' ? 'admin' : 'cliente'"
+        >
+          {{ usuario.tipoUsuario }}
+        </span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="acoes">
+      <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
+      <mat-cell *matCellDef="let usuario">
+        <button
+          style="margin: 10px"
+          mat-icon-button
+          color="accent"
+          (click)="editar(usuario)"
+          matTooltip="Editar"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          style="margin: 10px"
+          mat-icon-button
+          color="warn"
+          (click)="desativarUsuario(usuario)"
+          matTooltip="Desativar"
+        >
+          <mat-icon style="color: #f44336">delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="colunas"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: colunas"></mat-row>
+  </mat-table>
+</div>

@@ -27,3 +27,8 @@
 .text-center {
   text-align: center;
 }
+
+::ng-deep .datepicker-down .mat-datepicker-content {
+  transform-origin: top center !important;
+  top: 0 !important;
+}

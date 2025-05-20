@@ -11,6 +11,12 @@
       <mat-icon>edit</mat-icon>
       <span>Editar Perfil</span>
     </button>
+
+    <button *ngIf="isAdmin()" mat-menu-item (click)="gerenciarUsuarios()">
+      <mat-icon aria-hidden="false" fontIcon="group"></mat-icon>
+      <span>Gerenciar Usuários</span>
+    </button>
+
     <button mat-menu-item (click)="logout()">
       <mat-icon>logout</mat-icon>
       <span>Sair</span>

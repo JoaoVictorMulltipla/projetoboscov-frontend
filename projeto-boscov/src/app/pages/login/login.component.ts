@@ -69,11 +69,25 @@ export class LoginComponent {
 
       this.authService.login(email, senha).subscribe({
         next: (res) => {
+          const usuario = res.usuario;
+
+          if (!usuario.status) {
+            this.snackBar.open(
+              'Este usuário está desativado. Contate um administrador.',
+              'Fechar',
+              {
+                duration: 4000,
+                panelClass: ['error-snackbar'],
+              }
+            );
+            return;
+          }
+
           console.log('Token recebido:', res.token);
 
           if (typeof window !== 'undefined') {
             localStorage.setItem('token', res.token);
-            localStorage.setItem('usuario', JSON.stringify(res.usuario));
+            localStorage.setItem('usuario', JSON.stringify(usuario));
           }
 
           this.router.navigate(['/filmes']);
@@ -83,7 +97,6 @@ export class LoginComponent {
             panelClass: ['success-snackbar'],
           });
         },
-
         error: (err) => {
           console.error('Erro ao logar:', err);
           this.snackBar.open('Email ou senha inválidos.', 'Fechar', {

@@ -1,0 +1,36 @@
+<div class="editar-usuario-container">
+  <h2>Editar Usuário</h2>
+
+  <form>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nome</mat-label>
+      <input matInput [(ngModel)]="nome" name="nome">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Apelido</mat-label>
+      <input matInput [(ngModel)]="apelido" name="apelido">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nova Senha</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="senha" name="senha">
+      <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
+        <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Confirmar Senha</mat-label>
+      <input matInput [type]="hideConfirm ? 'password' : 'text'" [(ngModel)]="confirmarSenha" name="confirmarSenha">
+      <button mat-icon-button matSuffix (click)="hideConfirm = !hideConfirm" type="button">
+        <mat-icon>{{ hideConfirm ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <div class="button-group">
+      <button mat-raised-button color="primary" (click)="salvar()">Salvar</button>
+      <button mat-stroked-button color="warn" (click)="cancelar()">Cancelar</button>
+    </div>
+  </form>
+</div>

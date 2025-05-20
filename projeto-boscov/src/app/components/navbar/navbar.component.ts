@@ -32,6 +32,15 @@ export class NavbarComponent {
     this.router.navigate(['/perfil']);
   }
 
+  gerenciarUsuarios() {
+    this.router.navigate(['/usuarios']);
+  }
+
+  isAdmin(): boolean {
+  const usuario = this.auth.getUser();
+  return usuario?.tipoUsuario === 'ADMIN';
+  }
+
   logout() {
     this.auth.logout();
     this.router.navigate(['/login']);

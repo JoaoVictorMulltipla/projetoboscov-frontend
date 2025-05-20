@@ -11,6 +11,7 @@ export interface LoginResponse {
     email: string;
     tipoUsuario: string;
     apelido?: string;
+    status: boolean;
   };
 }
 
