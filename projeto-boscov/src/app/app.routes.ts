@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { LayoutLogadoComponent } from './components/layout-logado/layout-logado.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -7,6 +8,7 @@ export const routes: Routes = [
   {
     path: '',
     component: LayoutLogadoComponent,
+    canActivate: [authGuard],
     children: [
       { path: 'filmes', loadComponent: () => import('./pages/filme/filme.component').then(m => m.FilmeComponent) },
       { path: 'filmes/:id', loadComponent: () => import('./pages/filme-detalhe/filme-detalhe.component').then(m => m.FilmeDetalheComponent) },
