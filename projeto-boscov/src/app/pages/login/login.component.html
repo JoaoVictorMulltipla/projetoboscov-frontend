@@ -1,0 +1,71 @@
+<div class="login-container">
+  <mat-card class="login-card">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <h2 style="text-align: center; color: white">Acesse a sua conta!</h2>
+
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" required />
+        <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+          O email é obrigatório.
+        </mat-error>
+        <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
+          Digite um email válido.
+        </mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Senha</mat-label>
+        <input
+          matInput
+          [type]="showPassword ? 'text' : 'password'"
+          formControlName="senha"
+          required
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="togglePasswordVisibility()"
+        >
+          <mat-icon>{{
+            showPassword ? "visibility_off" : "visibility"
+          }}</mat-icon>
+        </button>
+        <mat-error *ngIf="loginForm.get('senha')?.hasError('required')">
+          A senha é obrigatória.
+        </mat-error>
+      </mat-form-field>
+
+
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="full-width"
+        [disabled]="loginForm.invalid"
+      >
+        Entrar
+      </button>
+
+
+      <button
+        mat-stroked-button
+        color="primary"
+        style="color: white;"
+        class="full-width"
+        type="button"
+        (click)="abrirRegistro()"
+      >
+        Registrar
+      </button>
+
+
+      <div *ngIf="error" class="error-message">
+        {{ error }}
+      </div>
+    </form>
+  </mat-card>
+</div>

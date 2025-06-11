@@ -1,0 +1,75 @@
+.usuarios-container {
+  padding: 24px;
+  border-radius: 12px;
+  background-color: #ffffff85;
+  margin: 40px auto;
+  max-width: 1000px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.icon-left {
+  margin-right: 8px;
+}
+
+.tabela-usuarios {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.badge {
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+}
+
+.badge.admin {
+  background-color: #3f51b5;
+}
+
+.badge.cliente {
+  background-color: #4caf50;
+}
+
+.btn-novo-usuario {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  background-color: #3f51b5;
+  color: white;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-novo-usuario mat-icon {
+  font-size: 20px;
+}
+
+.btn-novo-usuario:hover {
+  background-color: #303f9f;
+  box-shadow: 0 4px 12px rgba(63, 81, 181, 0.3);
+}
+
+.back-button {
+  margin-bottom: 16px;
+}
+

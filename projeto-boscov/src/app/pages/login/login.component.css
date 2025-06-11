@@ -1,0 +1,61 @@
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-card {
+  width: 400px;
+  padding: 24px;
+  background-color: rgba(35, 42, 49, 0.9);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  border: 1px solid white;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-outline {
+  color: white;
+  border-color: white;
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-outline-thick {
+  color: white;
+  border-color: white;
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 4px;
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-label {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-input-element {
+  color: white;
+}
+
+button[type="submit"] {
+  border: 1px solid white;
+  color: white;
+  background-color: transparent;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: white;
+  color: #232a31;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}

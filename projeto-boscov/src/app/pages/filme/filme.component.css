@@ -1,0 +1,15 @@
+.filmes-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 0.2rem;
+}
+
+.filme-card {
+  width: 320px;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
